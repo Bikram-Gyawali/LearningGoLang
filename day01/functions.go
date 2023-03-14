@@ -15,6 +15,13 @@ func main(){
 	fmt.Println("sum ", sum(num1,num2))  
 	fmt.Println("subctraction",sub(num1,num2))
 	fmt.Println("power",power(a,b))
+	
+	// var result1 int
+	// var result2 int
+
+	result1,result2:=calc(num1,num2)
+
+	fmt.Println(result1,result2)
 }
 
 
@@ -30,6 +37,11 @@ func power(a float64,b float64)float64 {
 	return math.Pow(a,b)
 }
 
+func calc(a int,b int )(int, int){ // here in the parenthesis there are two int so that the function returns 2 values 
+ 	var mul=a*b
+	var div=b/a
+	return mul,div
+}
 
 
 // output 
