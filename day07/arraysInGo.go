@@ -26,6 +26,8 @@ func main(){
 	// slice ranges
 	rangeOne:=names[1:3]
 
+
+	//upto last of the array
 	rangeTwo:=names[1:]
 
 	fmt.Println("range1",rangeOne)
