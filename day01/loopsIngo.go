@@ -8,6 +8,11 @@ func main(){
 		fmt.Printf("b%dkram\n",i)
 		i++
 	}
+	names:=[]string{"hehe","hello","hi","how","hell"}
+	
+	for index,value :=range names{
+		fmt.Printf("the value at index %v is %v\n",index,value)
+	}
 }
 
 // output ; 
@@ -16,3 +21,4 @@ func main(){
 // b3kram
 // b4kram
 // b5kram
+
