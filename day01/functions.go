@@ -22,6 +22,9 @@ func main(){
 	result1,result2:=calc(num1,num2)
 
 	fmt.Println(result1,result2)
+
+
+	cycleNames([]string{"'bikram","ram","markib"},sayGreeting)
 }
 
 
@@ -47,3 +50,18 @@ func calc(a int,b int )(int, int){ // here in the parenthesis there are two int 
 // output 
 // sum 42
 // sub -22
+
+func cycleNames(n []string, f func(string)){
+	for _,v:=range n{
+		f(v)
+	}
+}
+
+func sayGreeting(d string){
+	fmt.Printf("Goodmorning %v\n",d)
+}
+
+
+func circlArea(r float64) float64 {
+	return math.Pi*r*r
+}
