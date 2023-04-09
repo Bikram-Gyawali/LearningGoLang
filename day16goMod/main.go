@@ -17,6 +17,10 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":3000", r)) 
 
+	fmt.Println("how are yuo")
+
+
+
 }
 
 func greet() {
