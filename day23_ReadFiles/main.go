@@ -28,5 +28,6 @@ func ReadStats(filename string) {
 
 func main() {
 	filename := "file.dat"
+
 	ReadStats(filename)
 }
