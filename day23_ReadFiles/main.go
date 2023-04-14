@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 func ReadStats(filename string) {
@@ -47,17 +49,83 @@ func ReadByLine(filename string) {
 	}
 	defer file.Close()
 
+	scanner := bufio.NewScanner(file)
 
-	scanner :=bufio.NewScanner(file)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+}
 
-	for scanner.Scan(){
-		
+func ReadByWord(filename string) {
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	scanner.Split(bufio.ScanWords)
+
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+}
+
+func ReadByBytes(filename string, size uint8) {
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	buf := make([]byte, size)
+
+	for {
+		totalRead, err := file.Read(buf)
+
+		if err != nil {
+			if err != io.EOF {
+				fmt.Println(err.Error())
+			}
+			break
+		}
+
+		fmt.Println(buf[:totalRead])
+	}
+
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+}
+
+func ReadConfig(filename string) {
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		raw := strings.Split(scanner.Text(), "=")
+		fmt.Println(raw[0])
+		fmt.Println(raw[1])
 	}
 }
 
 func main() {
-	filename := "file.dat"
-
+	// filename := "file.dat"
+	filenameCfg:= "test.cfg"
 	// ReadStats(filename)
-	ReadWholeFile(filename)
+	// ReadWholeFile(filename)
+	// ReadByWord(filename)
+	// ReadByLine(filename)
+	ReadByBytes(filenameCfg)
 }
